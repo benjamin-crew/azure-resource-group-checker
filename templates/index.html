@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Azure Resource Group Checker</title>
+        <!--<link href="css/style.css" rel="stylesheet">-->
+    </head>
+    <body>
+        <h3>Enter subscription ID: </h3>
+        <form action="{{ url_for('resource_group_checker') }}" method="post">
+            <input type="text" id="sub_id" name="sub_id" >
+            <input type="submit" id="submit_button" name="submit_button" value="Submit">
+        </form>
+        <table border="1px">
+            <thead>
+                <th>Index</th>
+                <th>Resource group name</th>
+            </thead>
+            <tbody style="text-align: center;">
+                {{ subscription_id }}
+                {% for resource in resource_groups %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ resource.name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
